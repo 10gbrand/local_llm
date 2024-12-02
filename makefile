@@ -14,6 +14,7 @@ create-volumes:
 
 pull-bge-m3:
 	docker exec $(CONTAINER_NAME) ollama pull bge-m3:latest
+	docker exec $(CONTAINER_NAME) ollama pull llama2
 
 clean:
 	rm -rf ollama-local open-webui-local
