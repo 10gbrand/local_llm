@@ -3,7 +3,7 @@ PROJECT_NAME := my-project
 COMPOSE_FILE := compose.yml
 CONTAINER_NAME := ollama_container
 
-.PHONY: all create-directories create-volumes up pull-bge-m3 clean
+.PHONY: all create-directories create-volumes up pull-models clean
 
 all: create-directories create-volumes up pull-bge-m3
 
@@ -17,9 +17,10 @@ create-volumes:
 up:
 	docker compose -p $(PROJECT_NAME) -f $(COMPOSE_FILE) up --build -d
 
-pull-bge-m3:
-	docker exec $(CONTAINER_NAME) ollama pull bge-m3:latest
+pull-models:
+	# docker exec $(CONTAINER_NAME) ollama pull bge-m3:latest
 	docker exec $(CONTAINER_NAME) ollama pull llama2
+	docker exec $(CONTAINER_NAME) ollama pull fcole90/ai-sweden-gpt-sw3:1.3b
 
 clean:
 	rm -rf ollama-local open-webui-local
